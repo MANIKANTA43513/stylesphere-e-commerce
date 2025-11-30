@@ -1,73 +1,342 @@
-# Welcome to your Lovable project
+🛒 Clothing Brand E-Commerce Web App (MERN Stack)
 
-## Project info
+A fully functional e-commerce web application built using the MERN stack.
+This project allows users to browse clothing items, apply filters, manage their cart, place mock orders, and receive an order confirmation email.
 
-**URL**: https://lovable.dev/projects/44b4d070-970f-44bf-8d72-8736248b0b13
+This assignment focuses on backend quality, API design, authentication, and smooth full-stack integration.
 
-## How can I edit this code?
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+🚀 Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/44b4d070-970f-44bf-8d72-8736248b0b13) and start prompting.
+🔐 User Authentication
 
-Changes made via Lovable will be committed automatically to this repo.
+Register & login with secure password hashing (bcrypt)
 
-**Use your preferred IDE**
+JWT authentication using HTTP-only cookies
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Protected routes for cart & orders
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-Follow these steps:
+👕 Product Management
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+MongoDB product catalog (20+ seeded items)
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Product details: name, description, category, sizes, price, image, stock
 
-# Step 3: Install the necessary dependencies.
-npm i
+Product detail page API
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+
+🔍 Search, Filters & Pagination
+
+Search by name/description
+
+Filters:
+
+Category (Men/Women/Kids)
+
+Size (S/M/L/XL)
+
+Price range
+
+
+Pagination support (?page=1&limit=10)
+
+Filters work together smoothly
+
+
+🛒 Shopping Cart
+
+Add, update quantity, remove items
+
+Cart persists per user
+
+Guest cart saved in localStorage
+
+Cart sync after login
+
+
+🧾 Checkout & Orders
+
+Mock checkout (no real payment)
+
+Order stored in MongoDB:
+
+Purchased items
+
+Selected sizes & quantities
+
+Total price
+
+Order date
+
+
+Cart auto-clears after order
+
+
+📧 Order Confirmation Email
+
+Nodemailer integration
+
+Email includes:
+
+Order ID
+
+Date
+
+Product summary
+
+Total amount
+
+Thank-you message
+
+
+
+
+---
+
+🛠 Tech Stack
+
+Frontend
+
+React.js (CRA or Vite)
+
+React Router v6
+
+Context API for Auth + Cart
+
+Axios for API calls
+
+
+Backend
+
+Node.js + Express.js
+
+MongoDB + Mongoose
+
+JWT, bcrypt, cookie-parser
+
+Nodemailer for sending emails
+
+
+Tools
+
+Postman / Thunder Client
+
+MongoDB Compass
+
+Cloudinary / Unsplash Images
+
+
+
+---
+
+📂 Folder Structure
+
+clothing-ecommerce/
+├── backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── utils/
+│   ├── seedProducts.js
+│   ├── server.js
+│   └── .env
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── context/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── App.jsx
+│   │   └── index.css
+│   └── package.json
+│
+└── README.md
+
+
+---
+
+⚙ Installation & Setup
+
+1️⃣ Clone the Repository
+
+git clone https://github.com/your-username/clothing-ecommerce.git
+cd clothing-ecommerce
+
+
+---
+
+🗄 Backend Setup
+
+cd backend
+npm install
+
+Create .env file:
+
+PORT=5000
+MONGO_URI=your_mongodb_url
+JWT_SECRET=your_secret_key
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_password
+
+
+---
+
+Run Backend
+
 npm run dev
-```
 
-**Edit a file directly in GitHub**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+Seed Database with Products
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+node seedProducts.js
 
-## What technologies are used for this project?
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+🎨 Frontend Setup
 
-## How can I deploy this project?
+cd frontend
+npm install
+npm start
 
-Simply open [Lovable](https://lovable.dev/projects/44b4d070-970f-44bf-8d72-8736248b0b13) and click on Share -> Publish.
 
-## Can I connect a custom domain to my Lovable project?
+---
 
-Yes, you can!
+📌 API Endpoints Summary
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+🔐 Auth
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Method	Endpoint	Description
+
+POST	/api/auth/register	Create new user
+POST	/api/auth/login	Login & set JWT cookie
+POST	/api/auth/logout	Clear cookie
+
+
+
+---
+
+🛍 Products
+
+Method	Endpoint	Description
+
+GET	/api/products	Fetch all products (search + filters + pagination)
+GET	/api/products/:id	Product detail
+
+
+
+---
+
+🛒 Cart
+
+Method	Endpoint	Description
+
+GET	/api/cart	Get user cart
+POST	/api/cart/add	Add item
+PUT	/api/cart/update	Update quantity
+DELETE	/api/cart/remove	Remove from cart
+
+
+
+---
+
+📦 Orders
+
+Method	Endpoint	Description
+
+POST	/api/orders	Place order
+GET	/api/orders/:id	Order detail
+
+
+
+---
+
+✉ Email Format (Example)
+
+After placing an order, the user receives an email:
+
+Order Confirmation - #ORDER_ID
+
+Thank you for shopping with us!
+
+Order Details:
+- Product List (name, size, qty, price)
+- Total Amount
+- Order Date
+
+We appreciate your purchase ❤
+
+
+---
+
+🧪 Testing Checklist
+
+[ ] Register → Login → Access protected routes
+
+[ ] Add products → Update → Remove from cart
+
+[ ] Apply filters + search together
+
+[ ] Pagination works correctly
+
+[ ] Checkout creates MongoDB order
+
+[ ] Confirmation email received
+
+[ ] Guest cart → login → syncs properly
+
+
+
+---
+
+🌐 Deployment (Optional but Good to Add)
+
+Backend
+
+Deploy on:
+
+Render
+
+Railway
+
+Cyclic
+
+
+Frontend
+
+Deploy on:
+
+Vercel
+
+Netlify
+
+
+Update axios base URL accordingly.
+
+
+---
+
+📘 Notes
+
+Minimum 20 products added using seeding script
+
+Focus on backend clean code, middleware, and error handling
+
+Frontend should be simple and functional, not fancy
+
+
+
+---
+
+🤝 Acknowledgement
+
+This project is built as part of the Pasovit Backend Developer Assignment.
+Created to demonstrate backend architecture, authentication flow, and API quality in a MERN environment.
